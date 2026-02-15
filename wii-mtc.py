@@ -10,7 +10,6 @@ bl_info = {
 
 import bpy
 
-# Propriétés de l'addon
 class TriangleColorProperties(bpy.types.PropertyGroup):
     active: bpy.props.BoolProperty(
         name="Enable Object coloration",
@@ -28,7 +27,6 @@ class TriangleColorProperties(bpy.types.PropertyGroup):
         default='8500'
     )
 
-# Handler de recoloration
 def color_triangles_handler(scene):
     props = bpy.context.scene.triangle_color_props
     if not props.active:
@@ -49,7 +47,6 @@ def color_triangles_handler(scene):
             else:
                 mat.diffuse_color = (0,0,1,1)
 
-# Panel pour la UI
 class VIEW3D_PT_triangle_color_panel(bpy.types.Panel):
     bl_label = "Wii MTC"
     bl_idname = "VIEW3D_PT_triangle_color_panel"
@@ -63,7 +60,6 @@ class VIEW3D_PT_triangle_color_panel(bpy.types.Panel):
         layout.prop(props, "active")
         layout.prop(props, "threshold")
 
-# Enregistrement
 classes = (
     TriangleColorProperties,
     VIEW3D_PT_triangle_color_panel,
